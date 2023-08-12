@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="ISO-8859-1">
-    <title> Login Employee Management System</title>
+    <title> Employee Information System</title>
 
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
@@ -18,7 +18,7 @@
     <div class = "row">
         <div class = "col-md-6 col-md-offset-3">
 
-            <h1> User Login Page </h1>
+            <h1> Please Login to Continue </h1>
             <form th:action="@{/login}" method="post" th:object="${user}">
 
                 <!-- error message -->
@@ -33,23 +33,32 @@
                 </div>
 
                 <div class = "form-group">
-                    <label for ="username"> Username </label> :
+                    <label for ="username"> Enter User Id </label> :
                     <input type="text" class = "form-control" id ="username" name = "userName"
                            placeholder="Enter user Id" autofocus="autofocus">
                 </div>
 
                 <div class="form-group">
-                    <label for="password">Password</label>: <input type="password"
+                    <label for="password">Enter Password</label>: <input type="password"
                                                                    id="password" name="password" class="form-control"
                                                                    placeholder="Enter Password" />
                 </div>
 
+<!--                <div class="form-group">-->
+<!--                    <div class="row">-->
+<!--                        <div class="col-sm-6 col-sm-offset-3">-->
+<!--                            <input type="submit" name="login-submit" id="login-submit"-->
+<!--                                   class="form-control btn btn-primary" value="Submit" />-->
+<!--                            <input type="Reset" name="login-submit" id="login-reset"-->
+<!--                                   class="form-control btn btn-primary" value="Reset" />-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
                 <div class="form-group">
                     <div class="row">
-                        <div class="col-sm-6 col-sm-offset-3">
-                            <input type="submit" name="login-submit" id="login-submit"
-                                   class="form-control btn btn-primary" value="Log In" />
-                        </div>
+                        <div class="col-sm-3 col-sm-offset-2"><input type="submit" name="login-submit" id="login-submit" class="form-control btn btn-primary" value="Submit" /></div>
+                        <div class="col-sm-3 col-sm-offset-2"><input type="Reset"  name="login-submit" id="login-reset"   class="form-control btn btn-primary" value="Reset" /></div>
+
                     </div>
                 </div>
             </form>

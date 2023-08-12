@@ -21,17 +21,17 @@ public class EmployeeService {
         return employeeRepository.findAll();
     }
 
-   @Transactional
+    @Transactional
     public String createEmployee(Employee emp) {
         try {
 
             if (!employeeRepository.existsByEmail(emp.getEmail())) {
                 //No need to set id value.In memeory table its got  create already while debugging once all the task are completed later change this funcionality
-             emp.setId(null == employeeRepository.findMaxId() ?  1: employeeRepository.findMaxId() + 1);
-             emp.setEmployeeId(emp.getId());
-             employeeRepository.save(emp);
+                emp.setId(null == employeeRepository.findMaxId() ?  1: employeeRepository.findMaxId() + 1);
+                emp.setEmployeeId(emp.getId());
+                employeeRepository.save(emp);
 
-               return "Employee record created successfully. ";
+                return "Employee record created successfully. ";
             } else {
                 return "Employee already exists in the database.";
             }
@@ -58,23 +58,23 @@ public class EmployeeService {
     @Transactional
     public String updateEmployeeById(Employee emp) {
         //if (employeeRepository.existsByEmail(emp.getEmail())) {
-            try {
-                List<Employee> employee = employeeRepository.findByEmail(emp.getEmail());
-                employee.stream().forEach(s -> {
-                    Employee employeeToBeUpdate = employeeRepository.findById(s.getId()).get();
-                    employeeToBeUpdate.setFirstName(emp.getFirstName());
-                    employeeToBeUpdate.setLastName(emp.getLastName());
-                    employeeToBeUpdate.setEmail(emp.getEmail());
-                    employeeToBeUpdate.setDateOfBirth(emp.getDateOfBirth());
-                    employeeToBeUpdate.setDateOfJoining(emp.getDateOfJoining());
-                    employeeToBeUpdate.setGrade(emp.getGrade());
-                    employeeRepository.save(employeeToBeUpdate);
-                });
-                return "Employee record updated.";
-            }
-            catch (Exception e) {
-                throw e;
-            }
+        try {
+            List<Employee> employee = employeeRepository.findByEmail(emp.getEmail());
+            employee.stream().forEach(s -> {
+                Employee employeeToBeUpdate = employeeRepository.findById(s.getId()).get();
+                employeeToBeUpdate.setFirstName(emp.getFirstName());
+                employeeToBeUpdate.setLastName(emp.getLastName());
+                employeeToBeUpdate.setEmail(emp.getEmail());
+                employeeToBeUpdate.setDateOfBirth(emp.getDateOfBirth());
+                employeeToBeUpdate.setDateOfJoining(emp.getDateOfJoining());
+                employeeToBeUpdate.setGrade(emp.getGrade());
+                employeeRepository.save(employeeToBeUpdate);
+            });
+            return "Employee record updated.";
+        }
+        catch (Exception e) {
+            throw e;
+        }
 //        } else {
 //            return "Employee does not exists in the database.";
 //        }
@@ -86,8 +86,8 @@ public class EmployeeService {
     }
 
     public List<Employee> getByKeyword(Employee emp){
-            return employeeRepository.findByEmployeesSearch(emp.getEmployeeId(), emp.getFirstName(), emp.getLastName(), emp.getDateOfBirth(),
-                    emp.getDateOfBirth(), emp.getGrade());
+        return employeeRepository.findByEmployeesSearch(emp.getFirstName(), emp.getLastName(), emp.getDateOfBirth(),
+                emp.getDateOfJoining(), emp.getGrade());
     }
 
 }

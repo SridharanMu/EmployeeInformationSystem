@@ -33,12 +33,12 @@
         <div class="card-body">
           <h4 class="text-center text-primary">View Employee</h4>
 
-          <form th:action="@{/}" method="Get" th:object="${employee}">
+          <form th:action="@{/loadData}" method="Get" th:object="${employee}">
 
             <input type="hidden" th:value="${employee.id}" name="id">
 
             <div class="form-group">
-              <label>Enter First Name</label>
+              <label>Enter First Name </label>
               <input type="text" class="form-control" name="firstName" th:value="${employee.firstName}">
             </div>
 
@@ -48,7 +48,7 @@
             </div>
 
             <div class="form-group">
-              <label>Enter email</label>
+              <label >Enter email</label>
               <input type="text"  class="form-control" name="email" th:value="${employee.email}">
             </div>
 

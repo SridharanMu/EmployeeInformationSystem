@@ -27,64 +27,72 @@
     </li>
 </ul>
 <!--top nav bar-->
-<!--<div th:if=${session.msg}>-->
-<!--    <div class="alert alert-success" role="alert" th:text="${session.msg}">-->
-<!--    </div>-->
-<!--    <th:block th:text="${#session.removeAttribute('msg')}"></th:block>-->
-<!--</div>-->
+<div th:if=${session.msg}>
+    <div class="alert alert-success" role="alert" th:text="${session.msg}">
+    </div>
+    <th:block th:text="${#session.removeAttribute('msg')}"></th:block>
+</div>
 
 <div class="container">
     <h4>Search Option</h4>
     <form  th:action="@{/searchbykey}" method="post">
         <div class="form-row">
-            <div class="form-group col-md-6">
-                <label for="inputFirstName">First Name</label>
-                <input type="text" class="form-control" id="inputFirstName" name="firstName"
-                       placeholder="Enter the First Name" size="20">
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="spanFirstName">First Name</span>
+                <input type="text" class="form-control" id="inputFirstName"
+                       aria-label="Sizing example input" name="firstName"
+                       aria-describedby="inputGroup-sizing-default" placeholder="Enter the First Name">
             </div>
         </div>
         <div class="form-row">
-            <div class="form-group col-md-6">
-                <label for="inputLastName">Last Name</label>
-                <input type="text" class="form-control" id="inputLastName" name="lastName"
-                       placeholder="Enter the last Name" size="20">
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="spanLastName">Last Name</span>
+                <input type="text" class="form-control" id="inputLastName"
+                       aria-label="Sizing example input" name="lastName"
+                       aria-describedby="inputGroup-sizing-default" placeholder="Enter the last Name">
             </div>
         </div>
         <div class="form-row">
-            <div class="form-group col-md-6">
-                <label for="inputEmail">Email</label>
-                <input type="Email" class="form-control" id="inputEmail" name="email"
-                       placeholder="Enter the valid Email Id" size="20" >
+            <div class="input-group mb-3">
+                <span class="input-group-text">Email</span>
+                <input type="text" class="form-control" id="inputEmail"
+                       aria-label="Sizing example input" name="email"
+                       aria-describedby="inputGroup-sizing-default" placeholder="Enter the valid Email Id">
             </div>
         </div>
-        <div class="form-group">
-            <label for="inputDOB">Date of Birth</label>
-            <input type="date" class="form-control" id="inputDOB" name="dateOfBirth"
-                   placeholder="Enter the Date of Birth" size="10">
-        </div>
-        <div class="form-group">
-            <label for="inputDOJ">Date of joining</label>
-            <input type="date" class="form-control" id="inputDOJ" name="dateOfJoining"
-                   placeholder="Enter the Date of joining" size="20" >
+        <div class="form-row">
+            <div class="input-group mb-3">
+                <span class="input-group-text" >Date of Birth</span>
+                <input type="date" class="form-control" id="inputDOB"
+                       aria-label="Sizing example input" name="dateOfBirth"
+                       aria-describedby="inputGroup-sizing-default" placeholder="Enter the Date of Birth">
+            </div>
         </div>
         <div class="form-row">
-            <div class="form-group col-md-6">
-                <label for="inputGrade">Grade</label>
-                <input type="text" class="form-control" id="inputGrade" name="grade"
-                       placeholder="Choose your grade level M1,M2,M3" size="20">
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="spanDOJ">Date of Joining</span>
+                <input type="date" class="form-control" id="inputDOJ"
+                       aria-label="Sizing example input" name="dateOfJoining"
+                       aria-describedby="inputGroup-sizing-default" placeholder="Enter the Date of Joining">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="spanGrade">Grade</span>
+                <input type="text" class="form-control" id="inputGrade"
+                       aria-label="Sizing example input" name="grade"
+                       aria-describedby="inputGroup-sizing-default" placeholder="Choose your grade level M1,M2,M3">
             </div>
         </div>
         <button type="submit" class="btn btn-primary">Search</button>
     </form>
 </div>
 </div>
-
-<div class="container p-5">
+<div class="container">
     <h4>Employee Data</h4>
     <div class="container float-left">
         <a th:href="@{/export}" class="btn btn-primary">Export to excel</a>
     </div>
-    <div> </div>
     <table class="table">
         <thead class="thead-light">
         <tr>

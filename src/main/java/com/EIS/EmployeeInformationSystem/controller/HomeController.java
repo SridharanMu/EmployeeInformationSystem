@@ -46,7 +46,7 @@ public class HomeController {
     @GetMapping("/loadData")
     public String loadData(Model model)
     {
-       List<Employee> listEmployees= employeeService.getEmployee();
+        List<Employee> listEmployees= employeeService.getEmployee();
         model.addAttribute("listEmployees",listEmployees);
         return "index";
     }
@@ -54,15 +54,15 @@ public class HomeController {
     @PostMapping("/login")
     public String login(@ModelAttribute User u , HttpSession session, Model model)
     {
- if(u.getUserName().equals("admin") && u.getPassword().equals("admin")) {
-     List<Employee> listEmployees = employeeService.getEmployee();
-     model.addAttribute("listEmployees", listEmployees);
-     return "index";
- }
- else
- {
-     return "redirect:/login";
- }
+        if(u.getUserName().equals("admin") && u.getPassword().equals("admin")) {
+        List<Employee> listEmployees = employeeService.getEmployee();
+        model.addAttribute("listEmployees", listEmployees);
+        return "index";
+        }
+        else
+         {
+            return "redirect:/login";
+         }
     }
 
     @GetMapping("/addEmployee")
@@ -80,14 +80,15 @@ public class HomeController {
 
     @RequestMapping(path = {"/searchbykey"})
     public String searchbykey(@ModelAttribute Employee e,Model model) {
-        if (e.getFirstName() != null || e.getLastName()!=null || e.getEmployeeId()>0) {
+        if ((employeeService.getEMpById(e.getEmployeeId())!=null) &&
+                e.getFirstName() != null || e.getLastName()!=null || e.getEmployeeId()>0) {
             List<Employee> employee = employeeService.getByKeyword(e);
             model.addAttribute("listEmployees", employee);
             model.addAttribute("message", "search completed");
         } else {
             List<Employee> employee = employeeService.getEmployee();
             model.addAttribute("listEmployees", employee);
-            model.addAttribute("message", "Please search with employee id or First name or last Name");
+            model.addAttribute("message", "Please search no records found");
         }
         model.addAttribute("status", true);
         return "index";
@@ -180,7 +181,12 @@ public class HomeController {
                 List<Object> employee = csvToBean.parse();
                 // TODO: save users in DB?
 
-               // employeeService.UploadEmployeeList();
+                //employeeService.UploadEmployeeList(employee);
+
+                for (int i = 0; i < employee.size(); i++) {
+
+                    employeeService.createEmployee((Employee)employee.get(i));
+                }
 
                 // save users list on model
                 model.addAttribute("listEmployees", employee);

@@ -23,17 +23,19 @@ public interface EmployeeRepository extends JpaRepository<Employee,Long> {
     @Query("select max(s.id) from Employee  s")
     public Integer findMaxId();
 
-    @Query(value = "select * from Employee  s where s.first_Name like %:keyword%", nativeQuery = true)
+
+    @Query(value = "select * from Employee  s where s.first_name = :keyword " +
+            "or s.last_name =:keyword or s.date_of_birth =:keyword or  s.date_of_joining = :keyword " +
+            " or s.grade =:keyword ", nativeQuery = true)
     public List<Employee> findByKeyword(@Param("keyword") String keyword);
 
-    @Query(value = "select * from Employee  s where s.employee_Id like %:employee_Id% or s.first_name like %:first_name% " +
-            "or s.last_name like %:last_name% or s.date_of_birth like %:date_of_birth% or  s.date_of_joining like %:date_of_joining%" +
-            " or s.grade like %:grade% ", nativeQuery = true)
-    public List<Employee> findByEmployeesSearch(@Param("employee_Id") Long employee_Id,
-                                                @Param("first_name") String first_name,
-                                                @Param("last_name") String last_name,
-                                                @Param("date_of_birth") String date_of_birth,
-                                                @Param("date_of_joining") String date_of_joining,
+    @Query(value = "select * from Employee  s where s.first_name = :firstName " +
+            "or s.last_name =:lastName or s.date_of_birth =:dob or  s.date_of_joining = :doj " +
+            " or s.grade =:grade ", nativeQuery = true)
+    public List<Employee> findByEmployeesSearch(@Param("firstName") String firstName,
+                                                @Param("lastName") String lastName,
+                                                @Param("dob") String dob,
+                                                @Param("doj") String doj,
                                                 @Param("grade") String grade
     );
 }
